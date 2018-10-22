@@ -27,7 +27,7 @@ DOCKER:
       image: ${/DOCKER/images/deploy-tools/image}
 
 SSH_AGENT:
-  key_names: [***REMOVED***, id_vegtech_rsa]
+  key_names: [id_rsa_hallomaarten, id_vegtech_rsa]
   docker_image: ${/DOCKER/images/ssh-agent/image}
 
 SSH:
