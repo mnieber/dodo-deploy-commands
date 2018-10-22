@@ -2,10 +2,10 @@ from setuptools import setup
 
 setup(
     name='dodo_deploy_commands',
-    version='0.1.1',
+    version='0.1.2',
     description='Deployment related Dodo Commands',
     url='https://github.com/mnieber/dodo_deploy_commands',
-    download_url='https://github.com/mnieber/dodo_deploy_commands/tarball/0.1.1',
+    download_url='https://github.com/mnieber/dodo_deploy_commands/tarball/0.1.2',
     author='Maarten Nieber',
     author_email='hallomaarten@yahoo.com',
     license='MIT',
