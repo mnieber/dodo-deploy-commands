@@ -42,7 +42,6 @@ def _write_inventory_file(ansible_src_dir, target_ip):
     return 'target', inventory_filename
 
 
-__import__('pudb').set_trace()
 if Dodo.is_main(__name__):
     args = _args()
 
