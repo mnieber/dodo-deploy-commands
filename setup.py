@@ -11,11 +11,11 @@ setup(
     license='MIT',
     packages=['dodo_deploy_commands', ],
     package_data={
-        'drop-in': [
-            '*.yaml',
-            '*.md',
-            'deploy-tools/docker/Dockerfile',
-            'ssh-agent/docker/Dockerfile',
+        'dodo_deploy_commands': [
+            'drop-in/*.yaml',
+            'drop-in/*.md',
+            'drop-in/deploy-tools/docker/Dockerfile',
+            'drop-in/ssh-agent/docker/Dockerfile',
         ]
     },
     entry_points={},
