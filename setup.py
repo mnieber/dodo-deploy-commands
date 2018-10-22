@@ -10,7 +10,14 @@ setup(
     author_email='hallomaarten@yahoo.com',
     license='MIT',
     packages=['dodo_deploy_commands', ],
-    package_data={},
+    package_data={
+        'drop-in': [
+            '*.yaml',
+            '*.md',
+            'deploy-tools/docker/Dockerfile',
+            'ssh-agent/docker/Dockerfile',
+        ]
+    },
     entry_points={},
     install_requires=[],
     zip_safe=False)
