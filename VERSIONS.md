@@ -1,5 +1,9 @@
 # Version history
 
+## 0.1.4
+
+- Fix file permissions
+
 ## 0.1.3
 
 - Add drop-in data to python package
