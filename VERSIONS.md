@@ -1,6 +1,6 @@
 # Version history
 
-## 0.1.2
+## 0.1.3
 
 - Add drop-in data to python package
 
