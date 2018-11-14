@@ -116,7 +116,7 @@ if Dodo.is_main(__name__):
 
     decorators = Dodo.config['ROOT']['decorators'].setdefault('docker', [])
     decorators.append(Dodo.command_name)
-    Dodo.runcmd(cmd, cwd=args.srv_salt_top_dir)
+    Dodo.run(cmd, cwd=args.srv_salt_top_dir)
     decorators.remove(Dodo.command_name)
 
     os.unlink(salt_master_filename)

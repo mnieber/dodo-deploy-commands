@@ -30,14 +30,13 @@ if Dodo.is_main(__name__):
 
             # Stop command
             if args.command in ('stop', 'restart') and container_id:
-                Dodo.runcmd(
-                    [
-                        'docker', 'run', '--rm', '--volumes-from=ssh-agent',
-                        '-it', args.image_name, 'ssh-add', '-D'
-                    ],
-                    quiet=True)
+                Dodo.run([
+                    'docker', 'run', '--rm', '--volumes-from=ssh-agent', '-it',
+                    args.image_name, 'ssh-add', '-D'
+                ],
+                         quiet=True)
 
-                Dodo.runcmd(['docker', 'rm', '-f', container_id])
+                Dodo.run(['docker', 'rm', '-f', container_id])
                 if args.command in ('stop', ):
                     sys.exit(0)
 
@@ -51,7 +50,7 @@ if Dodo.is_main(__name__):
                         "A container named 'ssh-agent' is already running.")
 
                 # Run ssh-agent
-                Dodo.runcmd([
+                Dodo.run([
                     'docker', 'run', '-d', '--name=ssh-agent', args.image_name
                 ], )
 
@@ -59,7 +58,7 @@ if Dodo.is_main(__name__):
                 ssh_host_dir = os.path.expandvars('$HOME/.ssh')
 
                 for key in Dodo.get_config("/SSH_AGENT/key_names"):
-                    Dodo.runcmd([
+                    Dodo.run([
                         'docker', 'run', '--rm', '--volumes-from=ssh-agent',
                         '-v',
                         '%s:/.ssh' % ssh_host_dir, '-it', args.image_name,

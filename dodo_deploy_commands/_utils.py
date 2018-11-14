@@ -10,7 +10,7 @@ def ssh_agent_docker_args():
 
 
 def try_ssh(target_ip):
-    Dodo.runcmd([
+    Dodo.run([
         'ssh',
         'root@%s' % target_ip, '-oStrictHostKeyChecking=no',
         '-oUserKnownHostsFile=/dev/null', 'echo'
@@ -23,7 +23,7 @@ def run_ssh_server(ssh_public_key, target_docker_image):
     target_container_name = "sshd_on_%s" % cleaned_docker_name
 
     # start ssh service on a new container based on target_docker_image
-    Dodo.runcmd([
+    Dodo.run([
         'docker',
         'run',
         '-d',
@@ -36,7 +36,7 @@ def run_ssh_server(ssh_public_key, target_docker_image):
     ])
 
     # copy public key to the docker container
-    Dodo.runcmd([
+    Dodo.run([
         'docker', 'cp', ssh_public_key,
         '%s:/root/.ssh/authorized_keys' % target_container_name
     ])
@@ -52,7 +52,6 @@ def run_ssh_server(ssh_public_key, target_docker_image):
 
 def commit_ssh_server(target_container_name, target_docker_image):
     # commit the container
-    Dodo.runcmd(
-        ['docker', 'commit', target_container_name, target_docker_image])
+    Dodo.run(['docker', 'commit', target_container_name, target_docker_image])
     # stop the container
-    Dodo.runcmd(['docker', 'stop', target_container_name])
+    Dodo.run(['docker', 'stop', target_container_name])

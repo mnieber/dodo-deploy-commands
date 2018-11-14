@@ -24,7 +24,6 @@ def _args():  # noqa
     if args.target_docker_image:
         args.ssh_public_key = os.path.expandvars(
             '$HOME/.ssh/%s.pub' % Dodo.get_config('/SSH/key_name'))
-    args.ansible_master_docker_image = Dodo.get_config('/ANSIBLE/docker_image')
 
     return args
 
@@ -38,7 +37,8 @@ def _write_inventory_file(ansible_src_dir, target_ip):
                                       '.inventory.%s' % target_container_name)
     with open(inventory_filename, 'w') as ofs:
         ofs.write("[webservers]\n")
-        ofs.write("%s ansible_host=%s is_docker_host=True" % (target_container_name, target_ip))
+        ofs.write("%s ansible_host=%s is_docker_host=True" %
+                  (target_container_name, target_ip))
     return 'target', inventory_filename
 
 
@@ -68,7 +68,7 @@ if Dodo.is_main(__name__):
         # yapf: enable
 
     with Dodo.decorator('docker'):
-        Dodo.runcmd(cmd, cwd=_srv_ansible_src_dir())
+        Dodo.run(cmd, cwd=_srv_ansible_src_dir())
 
     if args.target_docker_image:
         commit_ssh_server(target_container_name, args.target_docker_image)
