@@ -17,10 +17,11 @@ def _args():  # noqa
     args.ansible_src_dir = Dodo.get_config('/ANSIBLE/src_dir')
     args.target_docker_image = Dodo.get_config('/ANSIBLE/target_docker_image',
                                                None)
-    args.hostname = Dodo.get_config('/ANSIBLE/hostname', None)
+    args.host_name = Dodo.get_config('/ANSIBLE/host_name', None)
 
-    if args.hostname and args.target_docker_image:
-        raise CommandError('Both hostname and target_docker_image supplied')
+    if args.host_name and args.target_docker_image:
+        raise CommandError('Both host_name and target_docker_image supplied')
+
     if args.target_docker_image:
         args.ssh_public_key = os.path.expandvars(
             '$HOME/.ssh/%s.pub' % Dodo.get_config('/SSH/key_name'))
@@ -51,7 +52,7 @@ if Dodo.is_main(__name__):
         target, inventory_filename = _write_inventory_file(
             args.ansible_src_dir, target_ip)
     else:
-        target = args.hostname
+        target = args.host_name
 
     if args.bash:
         print(target_ip)
