@@ -2,13 +2,6 @@ from dodo_commands.framework import Dodo
 from plumbum.cmd import docker
 
 
-def ssh_agent_docker_args():
-    return [
-        '--volumes-from=ssh-agent',
-        '--env=SSH_AUTH_SOCK=/.ssh-agent/socket',
-    ]
-
-
 def try_ssh(target_ip):
     Dodo.run([
         'ssh',
