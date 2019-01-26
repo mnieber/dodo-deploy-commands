@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-from dodo_commands.framework import Dodo, CommandError
+from dodo_commands.framework import Dodo, CommandError, DecoratorScope
 import os
 from ._utils import run_ssh_server, commit_ssh_server
 
@@ -68,7 +68,7 @@ if Dodo.is_main(__name__):
         ]
         # yapf: enable
 
-    with Dodo.decorator('docker'):
+    with DecoratorScope('docker'):
         Dodo.run(cmd, cwd=_srv_ansible_src_dir())
 
     if args.target_docker_image:
