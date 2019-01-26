@@ -1,5 +1,11 @@
 # Version history
 
+## 0.1.5
+
+Refactor ssh-agent and salt-deploy
+Remove function ssh_agent_docker_args
+Rename runcmd to run, and apply yapf
+
 ## 0.1.4
 
 - Fix file permissions
