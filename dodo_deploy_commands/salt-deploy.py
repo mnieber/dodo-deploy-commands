@@ -90,7 +90,7 @@ def _write_salt_master_file(salt_top_dir, srv_salt_top_dir):
 
 
 def _create_docker_options(salt_src_dir, salt_master_filename):
-    docker_options = Dodo.config.setdefault('DOCKER', {}).setdefault(
+    docker_options = Dodo.get_config().setdefault('DOCKER', {}).setdefault(
         'options', {})
 
     if Dodo.command_name not in docker_options:
