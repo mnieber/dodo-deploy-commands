@@ -1,5 +1,9 @@
 # Version history
 
+## 0.2.0
+
+Remove use of Dodo.config
+
 ## 0.1.5
 
 Refactor ssh-agent and salt-deploy
