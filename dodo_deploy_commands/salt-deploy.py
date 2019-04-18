@@ -8,38 +8,35 @@ from ._utils import (run_ssh_server, commit_ssh_server)
 def _args():  # noqa
     parser = ArgumentParser(
         description=('Deploys a salt script to a ssh server'))
-    parser.add_argument(
-        "--debug", action="store_true", help='Only apply the debug.sls state')
+    parser.add_argument("--debug",
+                        action="store_true",
+                        help='Only apply the debug.sls state')
     parser.add_argument(
         "--verbose",
         action="store_true",
         help='Print the generated Salt master and roster file to the screen')
-    parser.add_argument(
-        "--bash",
-        action="store_true",
-        help='Drop into a bash shell instead of calling salt')
+    parser.add_argument("--bash",
+                        action="store_true",
+                        help='Drop into a bash shell instead of calling salt')
 
     args = Dodo.parse_args(
         parser,
         config_args=[
-            ConfigArg(
-                '/SALT/src_dir',
-                'salt_src_dir',
-                help='Root directory of the salt script'),
+            ConfigArg('/SALT/src_dir',
+                      'salt_src_dir',
+                      help='Root directory of the salt script'),
             ConfigArg(
                 '/SALT/target_docker_image',
                 'target_docker_image',
                 default=None,
                 help='Name of the Docker image that is the deploy target'),
-            ConfigArg(
-                '/SALT/host_name',
-                'host_name',
-                help='Name of the targeted server in the Salt script'),
-            ConfigArg(
-                '/SALT/top_dir',
-                '--top-dir',
-                default='.',
-                help='Root directory of the salt script'),
+            ConfigArg('/SALT/host_name',
+                      'host_name',
+                      help='Name of the targeted server in the Salt script'),
+            ConfigArg('/SALT/top_dir',
+                      '--top-dir',
+                      default='.',
+                      help='Root directory of the salt script'),
             ConfigArg(
                 '/SSH/key_name',
                 '--ssh-key-name',
@@ -48,8 +45,8 @@ def _args():  # noqa
 
     args.salt_top_dir = os.path.join(args.salt_src_dir, args.top_dir)
     if args.target_docker_image:
-        args.ssh_public_key = os.path.expandvars(
-            '$HOME/.ssh/%s.pub' % args.ssh_key_name)
+        args.ssh_public_key = os.path.expandvars('$HOME/.ssh/%s.pub' %
+                                                 args.ssh_key_name)
 
     return args
 
@@ -110,8 +107,8 @@ if Dodo.is_main(__name__):
     if args.target_docker_image:
         target_ip, target_container_name = run_ssh_server(
             args.ssh_public_key, args.target_docker_image)
-        salt_master_container_name = (
-            'salt_master_deploying_to_%s' % target_container_name)
+        salt_master_container_name = ('salt_master_deploying_to_%s' %
+                                      target_container_name)
         roster_filename = _write_roster_file(target_ip, target_container_name,
                                              args.salt_top_dir, args.host_name)
 
