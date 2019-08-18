@@ -1,7 +1,8 @@
 from argparse import ArgumentParser
-from dodo_commands.framework import Dodo, DecoratorScope, ConfigArg
 import os
 import uuid
+
+from dodo_commands import Dodo, DecoratorScope, ConfigArg
 from ._utils import (run_ssh_server, commit_ssh_server)
 
 

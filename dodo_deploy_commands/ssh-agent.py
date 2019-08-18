@@ -1,9 +1,11 @@
 # noqa
-from plumbum.cmd import docker, grep, awk
 import os
 import sys
 from argparse import ArgumentParser
-from dodo_commands.framework import Dodo, CommandError, ConfigArg
+
+from plumbum.cmd import docker, grep, awk
+
+from dodo_commands import Dodo, CommandError, ConfigArg
 
 
 def _args():  # noqa

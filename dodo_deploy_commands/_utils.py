@@ -1,5 +1,6 @@
-from dodo_commands.framework import Dodo
 from plumbum.cmd import docker
+
+from dodo_commands import Dodo
 
 
 def try_ssh(target_ip):

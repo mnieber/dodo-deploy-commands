@@ -1,6 +1,7 @@
 from argparse import ArgumentParser
-from dodo_commands.framework import Dodo, CommandError, DecoratorScope
 import os
+
+from dodo_commands import Dodo, CommandError, DecoratorScope
 from ._utils import run_ssh_server, commit_ssh_server
 
 
