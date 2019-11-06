@@ -1,5 +1,9 @@
 # Version history
 
+## 0.3.0
+
+Fix broken refactoring
+
 ## 0.2.0
 
 Remove use of Dodo.config
