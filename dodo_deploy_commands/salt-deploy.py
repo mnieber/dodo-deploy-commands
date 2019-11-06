@@ -28,7 +28,7 @@ def _args():  # noqa
                       help='Root directory of the salt script'),
             ConfigArg(
                 '/SALT/target_docker_image',
-                'target_docker_image',
+                '--target_docker_image',
                 default=None,
                 help='Name of the Docker image that is the deploy target'),
             ConfigArg('/SALT/host_name',
