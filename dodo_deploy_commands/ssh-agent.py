@@ -3,16 +3,19 @@ import os
 import sys
 from argparse import ArgumentParser
 
-from plumbum.cmd import docker, grep, awk
+from dodo_commands import CommandError, ConfigArg, Dodo
+from dodo_commands.dependencies.get import plumbum
 
-from dodo_commands import Dodo, CommandError, ConfigArg
+docker = plumbum.cmd.docker
+grep = plumbum.cmd.grep
+awk = plumbum.cmd.awk
 
 
 def _args():  # noqa
     parser = ArgumentParser(
         description=('Runs ssh-agent in a docker container'))
-    parser.add_argument(
-        "command", choices=['start', 'stop', 'restart', 'status'])
+    parser.add_argument("command",
+                        choices=['start', 'stop', 'restart', 'status'])
     args = Dodo.parse_args(
         parser,
         config_args=[

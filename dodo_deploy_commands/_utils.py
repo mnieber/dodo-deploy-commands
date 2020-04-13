@@ -1,6 +1,7 @@
-from plumbum.cmd import docker
-
 from dodo_commands import Dodo
+from dodo_commands.dependencies.get import plumbum
+
+docker = plumbum.cmd.docker
 
 
 def try_ssh(target_ip):
@@ -12,8 +13,8 @@ def try_ssh(target_ip):
 
 
 def run_ssh_server(ssh_public_key, target_docker_image):
-    cleaned_docker_name = target_docker_image.replace(':', '_').replace(
-        '/', '_')
+    cleaned_docker_name = target_docker_image.replace(':',
+                                                      '_').replace('/', '_')
     target_container_name = "sshd_on_%s" % cleaned_docker_name
 
     # start ssh service on a new container based on target_docker_image
