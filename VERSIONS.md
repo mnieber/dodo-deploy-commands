@@ -1,5 +1,9 @@
 # Version history
 
+## 0.4.0
+
+- Update ssh-agent script to latest dodo commands
+
 ## 0.3.0
 
 Fix broken refactoring
@@ -25,4 +29,3 @@ Rename runcmd to run, and apply yapf
 ## 0.1.0
 
 - Created
-
